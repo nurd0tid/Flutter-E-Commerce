@@ -1,4 +1,4 @@
-# taxnow_beta
+# Flutter E-Commerce
 
 A new Flutter project.
 
