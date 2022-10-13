@@ -19,6 +19,8 @@ class RecommendedProductController extends GetxController {
       _recommendedPorductList.addAll(Product.fromJson(response.body).products);
       _isLoaded = true;
       update();
-    } else {}
+    } else {
+      print("could not get products recommended");
+    }
   }
 }

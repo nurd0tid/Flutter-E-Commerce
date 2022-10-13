@@ -5,6 +5,8 @@ import 'package:taxnow_beta/pages/food/recommended_food_detail.dart';
 import 'package:taxnow_beta/pages/home/food_page_body.dart';
 import 'package:taxnow_beta/pages/home/main_food_page.dart';
 import 'package:get/get.dart';
+import 'package:taxnow_beta/routes/routes_helper.dart';
+import 'controller/recommended_product_controller.dart';
 import 'helper/dependencies.dart' as dep;
 
 void main() async {
@@ -19,13 +21,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.find<PopularProductController>().getPopularProductList();
+    Get.find<RecommendedProductController>().getRecommendedProductList();
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      title: 'Taxnow Beta',
       home: const MainFoodPage(),
+      initialRoute: RouteHelper.initial,
+      getPages: RouteHelper.routes,
     );
   }
 }
