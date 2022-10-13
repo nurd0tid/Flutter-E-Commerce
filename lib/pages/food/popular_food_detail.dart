@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:taxnow_beta/controller/popular_product_controller.dart';
 import 'package:taxnow_beta/pages/home/main_food_page.dart';
 import 'package:taxnow_beta/routes/routes_helper.dart';
 import 'package:taxnow_beta/utils/colors.dart';
@@ -7,13 +8,20 @@ import 'package:taxnow_beta/utils/dimension.dart';
 import 'package:taxnow_beta/widgets/app_icon.dart';
 import 'package:taxnow_beta/widgets/big_text.dart';
 import 'package:taxnow_beta/widgets/exandable_text.dart';
+import '../../utils/app_constants.dart';
 import '../../widgets/app_column.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  const PopularFoodDetail({super.key});
+  final int pageId;
+  const PopularFoodDetail({super.key, required this.pageId});
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<PopularProductController>().popularProductList[pageId];
+    print("page is id " + pageId.toString());
+    print("product name is " + product.name.toString());
+
     return Scaffold(
       body: Stack(
         children: [
@@ -25,9 +33,13 @@ class PopularFoodDetail extends StatelessWidget {
               width: double.maxFinite,
               height: Dimensions.popularFoodImgSize,
               decoration: BoxDecoration(
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage("assets/image/food0.png"))),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(AppConstants.BASE_URL +
+                      AppConstants.UPLOAD_URL +
+                      product.img!),
+                ),
+              ),
             ),
           ),
           // Icon Widget
@@ -69,15 +81,14 @@ class PopularFoodDetail extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppColumn(text: "Chinese Side"),
+                    AppColumn(text: product.name!),
                     SizedBox(height: Dimensions.height20),
                     BigText(text: "Introduce"),
                     SizedBox(height: Dimensions.height20),
                     Expanded(
                         child: SingleChildScrollView(
                             child: ExpandableTextWidget(
-                                text:
-                                    "Chicken marinated in a spiced yoghurt is placed in a large pot, then lavered with fried onion (cheecky easy sub below!), fresh coriander cilantro, then per boiled lightly spiced rice Chicken marinated in a spiced yoghurt is placed in a large pot, then lavered with fried onion (cheecky easy sub below!), fresh coriander cilantro, then per boiled lightly spiced rice Chicken marinated in a spiced yoghurt is placed in a large pot, then lavered with fried onion (cheecky easy sub below!), fresh coriander cilantro, then per boiled lightly spiced rice Chicken marinated in a spiced yoghurt is placed in a large pot, then lavered with fried onion (cheecky easy sub below!), fresh coriander cilantro, then per boiled lightly spiced rice")))
+                                text: product.description!)))
                   ],
                 ),
               )),
@@ -134,7 +145,7 @@ class PopularFoodDetail extends StatelessWidget {
                 right: Dimensions.width20,
               ),
               child: BigText(
-                text: "\$10 Add To Cart",
+                text: "\$ ${product.price!} Add To Cart",
                 color: Colors.white,
               ),
               decoration: BoxDecoration(
