@@ -5,18 +5,19 @@ import '../models/products_model.dart';
 
 class PopularProductController extends GetxController {
   final PopularProductRepo popularProductRepo;
-
   PopularProductController({required this.popularProductRepo});
-  List<dynamic> _popularPorductList = [];
-  List<dynamic> get popularProductList => _popularPorductList;
+  List<ProductModel> _popularPorductList = [];
+  List<ProductModel> get popularProductList => _popularPorductList;
+
+  bool _isLoaded = false;
+  bool get isLoaded => _isLoaded;
 
   Future<void> getPopularProductList() async {
     Response response = await popularProductRepo.getPopularProductList();
     if (response.statusCode == 200) {
-      print("got products");
       _popularPorductList = [];
       _popularPorductList.addAll(Product.fromJson(response.body).products);
-      print(_popularPorductList);
+      _isLoaded = true;
       update();
     } else {}
   }

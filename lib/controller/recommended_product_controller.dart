@@ -1,0 +1,24 @@
+import 'package:get/get.dart';
+import '../data/repository/recommended_product_repo.dart';
+import '../models/products_model.dart';
+
+class RecommendedProductController extends GetxController {
+  final RecommendedProductRepo recommendedProductRepo;
+  RecommendedProductController({required this.recommendedProductRepo});
+  List<ProductModel> _recommendedPorductList = [];
+  List<ProductModel> get recommendedProductList => _recommendedPorductList;
+
+  bool _isLoaded = false;
+  bool get isLoaded => _isLoaded;
+
+  Future<void> getRecommendedProductList() async {
+    Response response =
+        await recommendedProductRepo.getRecommendedProductList();
+    if (response.statusCode == 200) {
+      _recommendedPorductList = [];
+      _recommendedPorductList.addAll(Product.fromJson(response.body).products);
+      _isLoaded = true;
+      update();
+    } else {}
+  }
+}
