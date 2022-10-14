@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:taxnow_beta/routes/routes_helper.dart';
+import 'package:taxnow_beta/utils/dimension.dart';
 
 import '../../controller/popular_product_controller.dart';
 import '../../controller/recommended_product_controller.dart';
@@ -55,14 +56,14 @@ class _SplashScreenState extends State<SplashScreen>
             child: Center(
               child: Image.asset(
                 "assets/image/logo part 1.png",
-                width: 250,
+                width: Dimensions.splashImg,
               ),
             ),
           ),
           Center(
             child: Image.asset(
               "assets/image/logo part 2.png",
-              width: 250,
+              width: Dimensions.splashImg,
             ),
           ),
         ],

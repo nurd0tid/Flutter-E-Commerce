@@ -64,9 +64,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     },
                   ),
                 )
-              : CircularProgressIndicator(
-                  color: AppColors.mainColor,
-                );
+              : VideoShimmer();
         }),
         // dots
         GetBuilder<PopularProductController>(builder: (popularProducts) {
