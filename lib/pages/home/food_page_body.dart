@@ -1,5 +1,6 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_shimmer/flutter_shimmer.dart';
 import 'package:taxnow_beta/controller/popular_product_controller.dart';
 import 'package:taxnow_beta/controller/recommended_product_controller.dart';
 import 'package:taxnow_beta/data/repository/recommended_product_repo.dart';
@@ -210,9 +211,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     );
                   },
                 )
-              : CircularProgressIndicator(
-                  color: AppColors.mainColor,
-                );
+              : ProfileShimmer();
         })
       ],
     );
