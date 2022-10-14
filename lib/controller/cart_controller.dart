@@ -12,7 +12,7 @@ class CartController extends GetxController {
     required this.cartRepo,
   });
   Map<int, CartModel> _items = {};
-  Map<int, CartModel> get itemsms => _items;
+  Map<int, CartModel> get items => _items;
 
   void addItem(ProductModel product, int quantity) {
     var totalQuantity = 0;
@@ -87,5 +87,11 @@ class CartController extends GetxController {
       totalQuantity += value.quantity!;
     });
     return totalQuantity;
+  }
+
+  List<CartModel> get getItems {
+    return _items.entries.map((e) {
+      return e.value;
+    }).toList();
   }
 }

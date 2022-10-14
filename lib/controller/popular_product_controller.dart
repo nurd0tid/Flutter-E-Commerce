@@ -4,6 +4,7 @@ import 'package:taxnow_beta/controller/cart_controller.dart';
 import 'package:taxnow_beta/data/repository/popular_product_repo.dart';
 import 'package:taxnow_beta/utils/colors.dart';
 
+import '../models/cart_model.dart';
 import '../models/products_model.dart';
 
 class PopularProductController extends GetxController {
@@ -87,7 +88,7 @@ class PopularProductController extends GetxController {
     _quantity = 0;
     _inCartItems = _cart.getQuantity(product);
 
-    _cart.itemsms.forEach((key, value) {
+    _cart.items.forEach((key, value) {
       print("The id is " +
           value.id.toString() +
           " The quantity is " +
@@ -98,5 +99,9 @@ class PopularProductController extends GetxController {
 
   int get totalItems {
     return _cart.totalItems;
+  }
+
+  List<CartModel> get getItems {
+    return _cart.getItems;
   }
 }
