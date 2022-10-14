@@ -97,7 +97,7 @@ class CartPage extends StatelessWidget {
                                           .recommendedProductList
                                           .indexOf(_cartList[index].product!);
                                   Get.toNamed(RouteHelper.getRecommendedFood(
-                                      recommendedIndex));
+                                      recommendedIndex, "cartpage"));
                                 }
                               },
                               child: Container(
