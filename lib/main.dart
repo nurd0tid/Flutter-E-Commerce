@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taxnow_beta/controller/cart_controller.dart';
 import 'package:taxnow_beta/controller/popular_product_controller.dart';
 import 'package:taxnow_beta/pages/cart/cart_page.dart';
 import 'package:taxnow_beta/pages/food/popular_food_detail.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.find<CartController>().getCartData();
     return GetBuilder<PopularProductController>(builder: (_) {
       return GetBuilder<RecommendedProductController>(builder: (_) {
         return GetMaterialApp(
