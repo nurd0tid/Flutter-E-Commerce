@@ -5,6 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:taxnow_beta/routes/routes_helper.dart';
 
+import '../../controller/popular_product_controller.dart';
+import '../../controller/recommended_product_controller.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -17,9 +20,15 @@ class _SplashScreenState extends State<SplashScreen>
   late Animation<double> animation;
   late AnimationController controller;
 
+  Future<void> _loadResource() async {
+    await Get.find<PopularProductController>().getPopularProductList();
+    await Get.find<RecommendedProductController>().getRecommendedProductList();
+  }
+
   @override
   void initState() {
     super.initState();
+    _loadResource();
     controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
@@ -29,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen>
       curve: Curves.linear,
     );
     Timer(
-      Duration(seconds: 3),
+      const Duration(seconds: 3),
       () => Get.offNamed(RouteHelper.getInitial()),
     );
   }
