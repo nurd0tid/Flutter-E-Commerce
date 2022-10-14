@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taxnow_beta/controller/popular_product_controller.dart';
+import 'package:taxnow_beta/pages/cart/cart_page.dart';
 import 'package:taxnow_beta/pages/food/popular_food_detail.dart';
 import 'package:taxnow_beta/pages/food/recommended_food_detail.dart';
 import 'package:taxnow_beta/pages/home/food_page_body.dart';
@@ -25,9 +26,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Taxnow Beta',
-      home: const MainFoodPage(),
-      initialRoute: RouteHelper.initial,
-      getPages: RouteHelper.routes,
+      home: const CartPage(),
+      // initialRoute: RouteHelper.initial,
+      // getPages: RouteHelper.routes,
     );
   }
 }
