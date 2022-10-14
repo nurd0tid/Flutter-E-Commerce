@@ -6,6 +6,7 @@ import 'package:taxnow_beta/pages/food/recommended_food_detail.dart';
 import 'package:taxnow_beta/pages/home/food_page_body.dart';
 import 'package:taxnow_beta/pages/home/main_food_page.dart';
 import 'package:get/get.dart';
+import 'package:taxnow_beta/pages/splash/splash_page.dart';
 import 'package:taxnow_beta/routes/routes_helper.dart';
 import 'controller/recommended_product_controller.dart';
 import 'helper/dependencies.dart' as dep;
@@ -26,8 +27,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Taxnow Beta',
-      home: const MainFoodPage(),
-      initialRoute: RouteHelper.initial,
+      home: SplashScreen(),
+      // initialRoute: RouteHelper.getInitial(),
       getPages: RouteHelper.routes,
     );
   }

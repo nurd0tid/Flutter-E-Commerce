@@ -15,6 +15,7 @@ dependencies:
   get: ^4.1.4
   dots_indicator: ^2.1.0
   flutter_shimmer: ^2.1.2
+  persistent_bottom_nav_bar: ^5.0.2
 
 dev_dependencies:
   flutter_test:

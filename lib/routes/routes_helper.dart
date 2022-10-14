@@ -4,6 +4,7 @@ import 'package:taxnow_beta/pages/food/popular_food_detail.dart';
 import 'package:taxnow_beta/pages/home/main_food_page.dart';
 
 import '../pages/food/recommended_food_detail.dart';
+import '../pages/home/home_page.dart';
 
 class RouteHelper {
   static const String initial = "/";
@@ -22,7 +23,7 @@ class RouteHelper {
     GetPage(
       name: initial,
       page: () {
-        return MainFoodPage();
+        return HomePage();
       },
     ),
     GetPage(

@@ -243,7 +243,8 @@ class CartPage extends StatelessWidget {
                   child: Row(
                     children: [
                       SizedBox(width: Dimensions.width10 / 2),
-                      BigText(text: cartController.totalAmount.toString()),
+                      BigText(
+                          text: "\$ " + cartController.totalAmount.toString()),
                       SizedBox(width: Dimensions.width10 / 2),
                     ],
                   ),
