@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
+import 'package:taxnow_beta/routes/routes_helper.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -23,6 +27,10 @@ class _SplashScreenState extends State<SplashScreen>
     animation = CurvedAnimation(
       parent: controller,
       curve: Curves.linear,
+    );
+    Timer(
+      Duration(seconds: 3),
+      () => Get.offNamed(RouteHelper.getInitial()),
     );
   }
 

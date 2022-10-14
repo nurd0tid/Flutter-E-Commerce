@@ -27,8 +27,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Taxnow Beta',
-      home: SplashScreen(),
-      // initialRoute: RouteHelper.getInitial(),
+      // home: SplashScreen(),
+      initialRoute: RouteHelper.getSplashPage(),
       getPages: RouteHelper.routes,
     );
   }
