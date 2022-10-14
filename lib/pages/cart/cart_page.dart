@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taxnow_beta/controller/cart_controller.dart';
+import 'package:taxnow_beta/controller/popular_product_controller.dart';
 import 'package:taxnow_beta/pages/home/main_food_page.dart';
 import 'package:taxnow_beta/routes/routes_helper.dart';
 import 'package:taxnow_beta/utils/colors.dart';
@@ -9,6 +10,7 @@ import 'package:taxnow_beta/widgets/app_icon.dart';
 import 'package:taxnow_beta/widgets/big_text.dart';
 import 'package:taxnow_beta/widgets/small_text.dart';
 
+import '../../controller/recommended_product_controller.dart';
 import '../../utils/app_constants.dart';
 
 class CartPage extends StatelessWidget {
@@ -80,21 +82,40 @@ class CartPage extends StatelessWidget {
                         child: Row(
                           children: [
                             // Image Container
-                            Container(
-                              width: Dimensions.height20 * 5,
-                              height: Dimensions.height20 * 5,
-                              margin:
-                                  EdgeInsets.only(bottom: Dimensions.height10),
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(AppConstants.BASE_URL +
-                                      AppConstants.UPLOAD_URL +
-                                      cartController.getItems[index].img!),
+                            GestureDetector(
+                              onTap: () {
+                                var popularIndex =
+                                    Get.find<PopularProductController>()
+                                        .popularProductList
+                                        .indexOf(_cartList[index].product!);
+                                if (popularIndex >= 0) {
+                                  Get.toNamed(
+                                      RouteHelper.getPopularFood(popularIndex));
+                                } else {
+                                  var recommendedIndex =
+                                      Get.find<RecommendedProductController>()
+                                          .recommendedProductList
+                                          .indexOf(_cartList[index].product!);
+                                  Get.toNamed(RouteHelper.getRecommendedFood(
+                                      recommendedIndex));
+                                }
+                              },
+                              child: Container(
+                                width: Dimensions.height20 * 5,
+                                height: Dimensions.height20 * 5,
+                                margin: EdgeInsets.only(
+                                    bottom: Dimensions.height10),
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: NetworkImage(AppConstants.BASE_URL +
+                                        AppConstants.UPLOAD_URL +
+                                        cartController.getItems[index].img!),
+                                  ),
+                                  borderRadius: BorderRadius.circular(
+                                      Dimensions.radius20),
+                                  color: Colors.white,
                                 ),
-                                borderRadius:
-                                    BorderRadius.circular(Dimensions.radius20),
-                                color: Colors.white,
                               ),
                             ),
                             // Text Image
@@ -142,8 +163,9 @@ class CartPage extends StatelessWidget {
                                             children: [
                                               GestureDetector(
                                                 onTap: () {
-                                                  // popularProduct
-                                                  //     .setQuantity(false);
+                                                  cartController.addItem(
+                                                      _cartList[index].product!,
+                                                      -1);
                                                 },
                                                 child: Icon(Icons.remove,
                                                     color: AppColors.signColor),
@@ -160,8 +182,9 @@ class CartPage extends StatelessWidget {
                                                       Dimensions.width10 / 2),
                                               GestureDetector(
                                                 onTap: () {
-                                                  // popularProduct
-                                                  //     .setQuantity(true);
+                                                  cartController.addItem(
+                                                      _cartList[index].product!,
+                                                      1);
                                                 },
                                                 child: Icon(Icons.add,
                                                     color: AppColors.signColor),
