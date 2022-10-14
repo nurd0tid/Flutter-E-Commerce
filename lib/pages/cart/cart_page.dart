@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taxnow_beta/controller/cart_controller.dart';
 import 'package:taxnow_beta/pages/home/main_food_page.dart';
+import 'package:taxnow_beta/routes/routes_helper.dart';
 import 'package:taxnow_beta/utils/colors.dart';
 import 'package:taxnow_beta/utils/dimension.dart';
 import 'package:taxnow_beta/widgets/app_icon.dart';
@@ -37,7 +38,7 @@ class CartPage extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Get.to(() => MainFoodPage());
+                    Get.toNamed(RouteHelper.getInitial());
                   },
                   child: AppIcon(
                     icon: Icons.home_outlined,
@@ -67,10 +68,11 @@ class CartPage extends StatelessWidget {
               ),
               child: MediaQuery.removePadding(
                 context: context,
-                removeTop: true,
+                removeTop: false,
                 child: GetBuilder<CartController>(builder: (cartController) {
+                  var _cartList = cartController.getItems;
                   return ListView.builder(
-                    itemCount: cartController.getItems.length,
+                    itemCount: _cartList.length,
                     itemBuilder: (_, index) {
                       return Container(
                         width: double.maxFinite,
@@ -150,9 +152,9 @@ class CartPage extends StatelessWidget {
                                                   width:
                                                       Dimensions.width10 / 2),
                                               BigText(
-                                                  text:
-                                                      "0" // popularProduct.inCartItems.toString()
-                                                  ),
+                                                  text: _cartList[index]
+                                                      .quantity
+                                                      .toString()),
                                               SizedBox(
                                                   width:
                                                       Dimensions.width10 / 2),
