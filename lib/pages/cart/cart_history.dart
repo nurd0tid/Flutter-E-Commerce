@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:taxnow_beta/controller/cart_controller.dart';
 import 'package:taxnow_beta/utils/app_constants.dart';
 import 'package:taxnow_beta/utils/colors.dart';
@@ -15,7 +16,8 @@ class CartHistory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var getCartHistoryList = Get.find<CartController>().getCartHistoryList();
+    var getCartHistoryList =
+        Get.find<CartController>().getCartHistoryList().reversed.toList();
     Map<String, int> cartItemsPreOrder = Map();
 
     for (int i = 0; i < getCartHistoryList.length; i++) {
@@ -41,10 +43,10 @@ class CartHistory extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            height: 100,
+            height: Dimensions.height10 * 10,
             color: AppColors.mainColor,
             width: double.maxFinite,
-            padding: EdgeInsets.only(top: 45),
+            padding: EdgeInsets.only(top: Dimensions.height45),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -71,12 +73,22 @@ class CartHistory extends StatelessWidget {
                   children: [
                     for (int i = 0; i < itemsPreOrder.length; i++)
                       Container(
-                        height: 120,
+                        height: Dimensions.height30 * 4,
                         margin: EdgeInsets.only(bottom: Dimensions.height20),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            BigText(text: "05/02/2021"),
+                            (() {
+                              DateTime parseDate =
+                                  DateFormat("yyyy-MM-dd HH:mm:ss").parse(
+                                      getCartHistoryList[ListCounter].time!);
+                              var inputDate =
+                                  DateTime.parse(parseDate.toString());
+                              var outputFormat =
+                                  DateFormat("MM/dd/yyyy hh:mm a");
+                              var outputDate = outputFormat.format(inputDate);
+                              return BigText(text: outputDate);
+                            }()),
                             SizedBox(height: Dimensions.height10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -92,8 +104,8 @@ class CartHistory extends StatelessWidget {
                                       }
                                       return index <= 2
                                           ? Container(
-                                              height: 80,
-                                              width: 80,
+                                              height: Dimensions.height20 * 4,
+                                              width: Dimensions.height20 * 4,
                                               margin: EdgeInsets.only(
                                                   right:
                                                       Dimensions.width10 / 2),
@@ -120,16 +132,36 @@ class CartHistory extends StatelessWidget {
                                   ),
                                 ),
                                 Container(
-                                  height: 80,
+                                  height: Dimensions.height20 * 4,
                                   child: Column(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
-                                      SmallText(text: "Total"),
+                                      SmallText(
+                                        text: "Total",
+                                        color: AppColors.titleColor,
+                                      ),
                                       BigText(
                                         text: itemsPreOrder[i].toString() +
                                             "  Items",
                                         color: AppColors.titleColor,
+                                      ),
+                                      Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: Dimensions.width10,
+                                            vertical: Dimensions.height10 / 2),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                              Dimensions.radius15 / 3),
+                                          border: Border.all(
+                                              width: 1,
+                                              color: AppColors.mainColor),
+                                        ),
+                                        child: SmallText(
+                                          text: "one more",
+                                          color: AppColors.mainColor,
+                                        ),
                                       ),
                                     ],
                                   ),
