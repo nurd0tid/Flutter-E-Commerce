@@ -11,6 +11,8 @@ class NoDataPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Image.asset(
           imgPath,
@@ -25,7 +27,8 @@ class NoDataPage extends StatelessWidget {
           style: TextStyle(
               fontSize: MediaQuery.of(context).size.height * 0.0175,
               color: Theme.of(context).disabledColor),
-        )
+          textAlign: TextAlign.center,
+        ),
       ],
     );
   }
