@@ -1,15 +1,20 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:taxnow_beta/controller/cart_controller.dart';
+import 'package:taxnow_beta/routes/routes_helper.dart';
 import 'package:taxnow_beta/utils/app_constants.dart';
 import 'package:taxnow_beta/utils/colors.dart';
 import 'package:taxnow_beta/utils/dimension.dart';
 import 'package:taxnow_beta/widgets/app_icon.dart';
 import 'package:taxnow_beta/widgets/big_text.dart';
 import 'package:taxnow_beta/widgets/small_text.dart';
+
+import '../../models/cart_model.dart';
 
 class CartHistory extends StatelessWidget {
   const CartHistory({super.key});
@@ -29,14 +34,20 @@ class CartHistory extends StatelessWidget {
       }
     }
 
-    List<int> cartOrderTimeToList() {
+    List<int> cartItemsPreOrderToList() {
+      // clean code return
       return cartItemsPreOrder.entries.map((e) => e.value).toList();
-//     return cartItemsPreOrder.entries.map((e){
-//        return e.value;
-//     }).toList();
+      // not clean code return
+      //     return cartItemsPreOrder.entries.map((e){
+      //        return e.value;
+      //     }).toList();
     }
 
-    List<int> itemsPreOrder = cartOrderTimeToList();
+    List<String> cartOrderTimeToList() {
+      return cartItemsPreOrder.entries.map((e) => e.key).toList();
+    }
+
+    List<int> itemsPreOrder = cartItemsPreOrderToList();
 
     var ListCounter = 0;
     return Scaffold(
@@ -147,20 +158,46 @@ class CartHistory extends StatelessWidget {
                                             "  Items",
                                         color: AppColors.titleColor,
                                       ),
-                                      Container(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: Dimensions.width10,
-                                            vertical: Dimensions.height10 / 2),
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(
-                                              Dimensions.radius15 / 3),
-                                          border: Border.all(
-                                              width: 1,
-                                              color: AppColors.mainColor),
-                                        ),
-                                        child: SmallText(
-                                          text: "one more",
-                                          color: AppColors.mainColor,
+                                      GestureDetector(
+                                        onTap: () {
+                                          var orderTime = cartOrderTimeToList();
+                                          Map<int, CartModel> moreOrder = {};
+                                          for (int j = 0;
+                                              j < getCartHistoryList.length;
+                                              j++) {
+                                            if (getCartHistoryList[j].time ==
+                                                orderTime[i]) {
+                                              moreOrder.putIfAbsent(
+                                                  getCartHistoryList[j].id!,
+                                                  () => CartModel.fromJson(
+                                                      jsonDecode(jsonEncode(
+                                                          getCartHistoryList[
+                                                              j]))));
+                                            }
+                                          }
+                                          Get.find<CartController>().setItems =
+                                              moreOrder;
+                                          Get.find<CartController>()
+                                              .addToCartList();
+                                          Get.toNamed(
+                                              RouteHelper.getCartPage());
+                                        },
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: Dimensions.width10,
+                                              vertical:
+                                                  Dimensions.height10 / 2),
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                                Dimensions.radius15 / 3),
+                                            border: Border.all(
+                                                width: 1,
+                                                color: AppColors.mainColor),
+                                          ),
+                                          child: SmallText(
+                                            text: "one more",
+                                            color: AppColors.mainColor,
+                                          ),
                                         ),
                                       ),
                                     ],
