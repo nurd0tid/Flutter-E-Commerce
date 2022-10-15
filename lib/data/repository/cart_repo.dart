@@ -41,7 +41,7 @@ class CartRepo {
     return cartList;
   }
 
-  List<CartModel> getCartListHistory() {
+  List<CartModel> getCartHistoryList() {
     if (sharedPreferences.containsKey(AppConstants.CART_HISTORY_LIST)) {
       cartHistory = [];
       cartHistory =
@@ -66,7 +66,7 @@ class CartRepo {
     removeCart();
     sharedPreferences.setStringList(
         AppConstants.CART_HISTORY_LIST, cartHistory);
-    print("the length" + getCartListHistory().length.toString());
+    print("the length" + getCartHistoryList().length.toString());
   }
 
   void removeCart() {
