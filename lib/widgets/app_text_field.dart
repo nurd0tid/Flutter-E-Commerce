@@ -38,17 +38,17 @@ class AppTextField extends StatelessWidget {
         decoration: InputDecoration(
           hintText: hintText,
           prefixIcon: Icon(
-            Icons.email,
+            icon,
             color: AppColors.yellowColor,
           ),
-          enabledBorder: OutlineInputBorder(
+          focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(Dimensions.radius30),
             borderSide: BorderSide(
               width: 1.0,
               color: Colors.white,
             ),
           ),
-          focusedBorder: OutlineInputBorder(
+          enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(Dimensions.radius30),
             borderSide: BorderSide(
               width: 1.0,
