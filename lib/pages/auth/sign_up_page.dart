@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taxnow_beta/base/show_custom_snackbar.dart';
+import 'package:taxnow_beta/models/signup_model.dart';
 import 'package:taxnow_beta/utils/colors.dart';
 import 'package:taxnow_beta/utils/dimension.dart';
 import 'package:taxnow_beta/widgets/app_text_field.dart';
@@ -45,6 +46,13 @@ class SignUpPage extends StatelessWidget {
             title: "Password");
       } else {
         showCustomSnackBar("All wen well", title: "Perfect");
+        SignUp signUp = SignUp(
+          name: name,
+          phone: phone,
+          email: email,
+          password: password,
+        );
+        print(signUp.toString());
       }
     }
 
