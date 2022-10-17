@@ -38,75 +38,96 @@ class AccountPage extends StatelessWidget {
             SizedBox(
               height: Dimensions.height30,
             ),
-            // name
-            AccountWidget(
-              appIcon: AppIcon(
-                icon: Icons.person,
-                backgroundColor: AppColors.mainColor,
-                iconColor: Colors.white,
-                iconSize: Dimensions.height10 * 5 / 2,
-                size: Dimensions.height10 * 5,
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    // name
+                    AccountWidget(
+                      appIcon: AppIcon(
+                        icon: Icons.person,
+                        backgroundColor: AppColors.mainColor,
+                        iconColor: Colors.white,
+                        iconSize: Dimensions.height10 * 5 / 2,
+                        size: Dimensions.height10 * 5,
+                      ),
+                      bigText: BigText(text: "Muhamad Nur"),
+                    ),
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                    // phone
+                    AccountWidget(
+                      appIcon: AppIcon(
+                        icon: Icons.phone,
+                        backgroundColor: AppColors.yellowColor,
+                        iconColor: Colors.white,
+                        iconSize: Dimensions.height10 * 5 / 2,
+                        size: Dimensions.height10 * 5,
+                      ),
+                      bigText: BigText(text: "+62898736213"),
+                    ),
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                    // email
+                    AccountWidget(
+                      appIcon: AppIcon(
+                        icon: Icons.email,
+                        backgroundColor: AppColors.yellowColor,
+                        iconColor: Colors.white,
+                        iconSize: Dimensions.height10 * 5 / 2,
+                        size: Dimensions.height10 * 5,
+                      ),
+                      bigText: BigText(text: "nurdotid@gmail.com"),
+                    ),
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                    // address
+                    AccountWidget(
+                      appIcon: AppIcon(
+                        icon: Icons.location_on,
+                        backgroundColor: AppColors.yellowColor,
+                        iconColor: Colors.white,
+                        iconSize: Dimensions.height10 * 5 / 2,
+                        size: Dimensions.height10 * 5,
+                      ),
+                      bigText: BigText(text: "Jalan Raya A6"),
+                    ),
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                    // message
+                    AccountWidget(
+                      appIcon: AppIcon(
+                        icon: Icons.message_outlined,
+                        backgroundColor: Colors.redAccent,
+                        iconColor: Colors.white,
+                        iconSize: Dimensions.height10 * 5 / 2,
+                        size: Dimensions.height10 * 5,
+                      ),
+                      bigText: BigText(text: "Muhamad Nur"),
+                    ),
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                    AccountWidget(
+                      appIcon: AppIcon(
+                        icon: Icons.message_outlined,
+                        backgroundColor: Colors.redAccent,
+                        iconColor: Colors.white,
+                        iconSize: Dimensions.height10 * 5 / 2,
+                        size: Dimensions.height10 * 5,
+                      ),
+                      bigText: BigText(text: "Muhamad Nur"),
+                    ),
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                  ],
+                ),
               ),
-              bigText: BigText(text: "Muhamad Nur"),
-            ),
-            SizedBox(
-              height: Dimensions.height20,
-            ),
-            // phone
-            AccountWidget(
-              appIcon: AppIcon(
-                icon: Icons.phone,
-                backgroundColor: AppColors.yellowColor,
-                iconColor: Colors.white,
-                iconSize: Dimensions.height10 * 5 / 2,
-                size: Dimensions.height10 * 5,
-              ),
-              bigText: BigText(text: "+62898736213"),
-            ),
-            SizedBox(
-              height: Dimensions.height20,
-            ),
-            // email
-            AccountWidget(
-              appIcon: AppIcon(
-                icon: Icons.email,
-                backgroundColor: AppColors.yellowColor,
-                iconColor: Colors.white,
-                iconSize: Dimensions.height10 * 5 / 2,
-                size: Dimensions.height10 * 5,
-              ),
-              bigText: BigText(text: "nurdotid@gmail.com"),
-            ),
-            SizedBox(
-              height: Dimensions.height20,
-            ),
-            // address
-            AccountWidget(
-              appIcon: AppIcon(
-                icon: Icons.location_on,
-                backgroundColor: AppColors.yellowColor,
-                iconColor: Colors.white,
-                iconSize: Dimensions.height10 * 5 / 2,
-                size: Dimensions.height10 * 5,
-              ),
-              bigText: BigText(text: "Jalan Raya A6"),
-            ),
-            SizedBox(
-              height: Dimensions.height20,
-            ),
-            // message
-            AccountWidget(
-              appIcon: AppIcon(
-                icon: Icons.message_outlined,
-                backgroundColor: Colors.redAccent,
-                iconColor: Colors.white,
-                iconSize: Dimensions.height10 * 5 / 2,
-                size: Dimensions.height10 * 5,
-              ),
-              bigText: BigText(text: "Muhamad Nur"),
-            ),
-            SizedBox(
-              height: Dimensions.height20,
             ),
           ],
         ),
