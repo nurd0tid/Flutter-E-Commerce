@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:taxnow_beta/base/show_custom_snackbar.dart';
 import 'package:taxnow_beta/utils/colors.dart';
 import 'package:taxnow_beta/utils/dimension.dart';
 import 'package:taxnow_beta/widgets/app_text_field.dart';
@@ -20,6 +21,33 @@ class SignUpPage extends StatelessWidget {
       "f.png",
       "g.png",
     ];
+
+    void _registration() {
+      String name = nameController.text.trim();
+      String phone = phoneController.text.trim();
+      String email = emailController.text.trim();
+      String password = passwordController.text.trim();
+
+      if (name.isEmpty) {
+        showCustomSnackBar("Type in your name!", title: "Name");
+      } else if (phone.isEmpty) {
+        showCustomSnackBar("Type in your phone number!", title: "Phone Number");
+      } else if (email.isEmpty) {
+        showCustomSnackBar("Type in your email address!",
+            title: "Email address");
+      } else if (!GetUtils.isEmail(email)) {
+        showCustomSnackBar("Type in a valid email address!",
+            title: "Valid email address");
+      } else if (password.isEmpty) {
+        showCustomSnackBar("Type in your password!", title: "Password");
+      } else if (password.length < 8) {
+        showCustomSnackBar("Password can not be less than eight characters",
+            title: "Password");
+      } else {
+        showCustomSnackBar("All wen well", title: "Perfect");
+      }
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -78,18 +106,23 @@ class SignUpPage extends StatelessWidget {
             SizedBox(
               height: Dimensions.height20 + Dimensions.height20,
             ),
-            Container(
-              width: Dimensions.screenWidth / 2,
-              height: Dimensions.screenHeight / 13,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimensions.radius30),
-                color: AppColors.mainColor,
-              ),
-              child: Center(
-                child: BigText(
-                  text: "Sign up",
-                  size: Dimensions.font20 + Dimensions.font20 / 2,
-                  color: Colors.white,
+            GestureDetector(
+              onTap: () {
+                _registration();
+              },
+              child: Container(
+                width: Dimensions.screenWidth / 2,
+                height: Dimensions.screenHeight / 13,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(Dimensions.radius30),
+                  color: AppColors.mainColor,
+                ),
+                child: Center(
+                  child: BigText(
+                    text: "Sign up",
+                    size: Dimensions.font20 + Dimensions.font20 / 2,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
