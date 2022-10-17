@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:taxnow_beta/pages/auth/sign_up_page.dart';
 import 'package:taxnow_beta/utils/colors.dart';
 import 'package:taxnow_beta/utils/dimension.dart';
 import 'package:taxnow_beta/widgets/app_text_field.dart';
@@ -126,17 +127,17 @@ class SignInPage extends StatelessWidget {
                 text: "Don't have an account?",
                 style: TextStyle(
                   color: Colors.grey[500],
-                  fontSize: Dimensions.font16,
+                  fontSize: Dimensions.font20,
                 ),
                 children: [
                   TextSpan(
                     recognizer: TapGestureRecognizer()
-                      ..onTap = () => Get.to(() => SignInPage()),
+                      ..onTap = () => Get.to(() => SignUpPage()),
                     text: " Create",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.grey[500],
-                      fontSize: Dimensions.font16,
+                      color: AppColors.mainBlackColor,
+                      fontSize: Dimensions.font20,
                     ),
                   ),
                 ],
