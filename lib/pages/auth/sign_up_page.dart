@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taxnow_beta/base/show_custom_snackbar.dart';
+import 'package:taxnow_beta/controller/auth_controller.dart';
 import 'package:taxnow_beta/models/signup_model.dart';
 import 'package:taxnow_beta/utils/colors.dart';
 import 'package:taxnow_beta/utils/dimension.dart';
@@ -24,6 +25,7 @@ class SignUpPage extends StatelessWidget {
     ];
 
     void _registration() {
+      var authController = Get.find<AuthController>();
       String name = nameController.text.trim();
       String phone = phoneController.text.trim();
       String email = emailController.text.trim();
@@ -52,7 +54,13 @@ class SignUpPage extends StatelessWidget {
           email: email,
           password: password,
         );
-        print(signUp.toString());
+        authController.registration(signUp).then((status) {
+          if (status.isSuccess) {
+            print("Success registration");
+          } else {
+            showCustomSnackBar(status.message);
+          }
+        });
       }
     }
 
