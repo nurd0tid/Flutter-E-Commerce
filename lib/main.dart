@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taxnow_beta/controller/cart_controller.dart';
 import 'package:taxnow_beta/controller/popular_product_controller.dart';
+import 'package:taxnow_beta/pages/auth/sign_in_page.dart';
 import 'package:taxnow_beta/pages/auth/sign_up_page.dart';
 import 'package:taxnow_beta/pages/cart/cart_page.dart';
 import 'package:taxnow_beta/pages/food/popular_food_detail.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Taxnow Beta',
-          home: SignUpPage(),
+          home: SignInPage(),
           // initialRoute: RouteHelper.getSplashPage(),
           // getPages: RouteHelper.routes,
         );
