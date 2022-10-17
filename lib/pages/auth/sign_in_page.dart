@@ -132,7 +132,10 @@ class SignInPage extends StatelessWidget {
                 children: [
                   TextSpan(
                     recognizer: TapGestureRecognizer()
-                      ..onTap = () => Get.to(() => SignUpPage()),
+                      ..onTap = () => Get.to(
+                            () => SignUpPage(),
+                            transition: Transition.fade,
+                          ),
                     text: " Create",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
