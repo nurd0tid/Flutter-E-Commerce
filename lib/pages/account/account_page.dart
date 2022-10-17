@@ -4,7 +4,7 @@ import 'package:taxnow_beta/utils/dimension.dart';
 import 'package:taxnow_beta/widgets/app_icon.dart';
 import 'package:taxnow_beta/widgets/big_text.dart';
 
-import '../widgets/account_widget.dart';
+import '../../widgets/account_widget.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
