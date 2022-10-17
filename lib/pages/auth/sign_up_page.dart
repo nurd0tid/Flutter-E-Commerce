@@ -101,6 +101,7 @@ class SignUpPage extends StatelessWidget {
                         textController: passwordController,
                         hintText: "Password",
                         icon: Icons.password_sharp,
+                        isObscure: true,
                       ),
                       // Your Name
                       SizedBox(
