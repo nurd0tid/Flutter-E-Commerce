@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:taxnow_beta/account/account_page.dart';
 import 'package:taxnow_beta/pages/cart/cart_history.dart';
 import 'package:taxnow_beta/pages/home/main_food_page.dart';
 
@@ -21,7 +22,7 @@ class _HomePageState extends State<HomePage> {
     MainFoodPage(),
     Container(child: Center(child: Text("Next page"))),
     CartHistory(),
-    Container(child: Center(child: Text("Next next next page"))),
+    AccountPage(),
   ];
 
   void onTapNav(int index) {
