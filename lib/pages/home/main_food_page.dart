@@ -69,9 +69,10 @@ class _MainFoodPageState extends State<MainFoodPage> {
             // Showing Body Content
             // FoodPageBody(),
             Expanded(
-                child: SingleChildScrollView(
-              child: FoodPageBody(),
-            )),
+              child: SingleChildScrollView(
+                child: FoodPageBody(),
+              ),
+            ),
           ],
         ),
         onRefresh: () async {

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:taxnow_beta/routes/routes_helper.dart';
 import 'package:taxnow_beta/utils/dimension.dart';
 
+import '../../controller/auth_controller.dart';
 import '../../controller/popular_product_controller.dart';
 import '../../controller/recommended_product_controller.dart';
 
@@ -38,10 +39,17 @@ class _SplashScreenState extends State<SplashScreen>
       parent: controller,
       curve: Curves.linear,
     );
-    Timer(
-      const Duration(seconds: 3),
-      () => Get.offNamed(RouteHelper.getSignIn()),
-    );
+    if (Get.find<AuthController>().userLoggedIn()) {
+      Timer(
+        const Duration(seconds: 3),
+        () => Get.offNamed(RouteHelper.getInitial()),
+      );
+    } else {
+      Timer(
+        const Duration(seconds: 3),
+        () => Get.offNamed(RouteHelper.getSignIn()),
+      );
+    }
   }
 
   @override

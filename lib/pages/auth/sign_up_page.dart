@@ -10,6 +10,8 @@ import 'package:taxnow_beta/utils/dimension.dart';
 import 'package:taxnow_beta/widgets/app_text_field.dart';
 import 'package:taxnow_beta/widgets/big_text.dart';
 
+import '../../routes/routes_helper.dart';
+
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
 
@@ -55,7 +57,8 @@ class SignUpPage extends StatelessWidget {
         );
         authController.registration(signUp).then((status) {
           if (status.isSuccess) {
-            print("Success registration");
+            Get.toNamed(RouteHelper.getInitial());
+            // print("Success registration");
           } else {
             showCustomSnackBar(status.message);
           }
