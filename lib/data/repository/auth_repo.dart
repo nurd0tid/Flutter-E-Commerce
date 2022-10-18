@@ -32,9 +32,9 @@ class AuthRepo {
     return await sharedPreferences.setString(AppConstants.TOKEN, token);
   }
 
-  Future<void> saveUserEmailAndPassword(String email, String password) async {
+  Future<void> saveUserNumberAndPassword(String number, String password) async {
     try {
-      await sharedPreferences.setString(AppConstants.EMAIL, email);
+      await sharedPreferences.setString(AppConstants.PHONE, number);
       await sharedPreferences.setString(AppConstants.PASSWORD, password);
     } catch (e) {
       throw e;

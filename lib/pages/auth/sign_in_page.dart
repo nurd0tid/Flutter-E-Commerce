@@ -18,6 +18,7 @@ class SignInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var emailController = TextEditingController();
     var passwordController = TextEditingController();
+    
     void _login(AuthController authController) {
       String email = emailController.text.trim();
       String password = passwordController.text.trim();
