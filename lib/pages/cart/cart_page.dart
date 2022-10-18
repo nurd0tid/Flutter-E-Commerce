@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taxnow_beta/base/no_data_page.dart';
+import 'package:taxnow_beta/controller/auth_controller.dart';
 import 'package:taxnow_beta/controller/cart_controller.dart';
 import 'package:taxnow_beta/controller/popular_product_controller.dart';
 import 'package:taxnow_beta/pages/home/main_food_page.dart';
@@ -293,7 +294,11 @@ class CartPage extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          cartController.addToHistory();
+                          if (Get.find<AuthController>().userLoggedIn()) {
+                            cartController.addToHistory();
+                          } else {
+                            Get.toNamed(RouteHelper.getSignIn());
+                          }
                         },
                         child: Container(
                           padding: EdgeInsets.only(

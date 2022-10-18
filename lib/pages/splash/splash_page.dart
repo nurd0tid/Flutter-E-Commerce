@@ -40,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen>
     );
     Timer(
       const Duration(seconds: 3),
-      () => Get.offNamed(RouteHelper.getInitial()),
+      () => Get.offNamed(RouteHelper.getSignIn()),
     );
   }
 

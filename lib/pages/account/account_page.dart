@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:taxnow_beta/controller/auth_controller.dart';
+import 'package:taxnow_beta/controller/cart_controller.dart';
+import 'package:taxnow_beta/routes/routes_helper.dart';
 import 'package:taxnow_beta/utils/colors.dart';
 import 'package:taxnow_beta/utils/dimension.dart';
 import 'package:taxnow_beta/widgets/app_icon.dart';
@@ -107,20 +111,30 @@ class AccountPage extends StatelessWidget {
                         iconSize: Dimensions.height10 * 5 / 2,
                         size: Dimensions.height10 * 5,
                       ),
-                      bigText: BigText(text: "Muhamad Nur"),
+                      bigText: BigText(text: "Messages"),
                     ),
                     SizedBox(
                       height: Dimensions.height20,
                     ),
-                    AccountWidget(
-                      appIcon: AppIcon(
-                        icon: Icons.message_outlined,
-                        backgroundColor: Colors.redAccent,
-                        iconColor: Colors.white,
-                        iconSize: Dimensions.height10 * 5 / 2,
-                        size: Dimensions.height10 * 5,
+                    GestureDetector(
+                      onTap: () {
+                        if (Get.find<AuthController>().userLoggedIn()) {
+                          Get.find<AuthController>().clearSharedData();
+                          Get.find<CartController>().clear();
+                          Get.find<CartController>().clearCartHistory();
+                          Get.offNamed(RouteHelper.getSignIn());
+                        }
+                      },
+                      child: AccountWidget(
+                        appIcon: AppIcon(
+                          icon: Icons.logout,
+                          backgroundColor: Colors.redAccent,
+                          iconColor: Colors.white,
+                          iconSize: Dimensions.height10 * 5 / 2,
+                          size: Dimensions.height10 * 5,
+                        ),
+                        bigText: BigText(text: "Logout"),
                       ),
-                      bigText: BigText(text: "Muhamad Nur"),
                     ),
                     SizedBox(
                       height: Dimensions.height20,

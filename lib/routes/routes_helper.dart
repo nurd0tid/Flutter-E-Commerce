@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:taxnow_beta/pages/auth/sign_in_page.dart';
+import 'package:taxnow_beta/pages/auth/sign_up_page.dart';
 import 'package:taxnow_beta/pages/cart/cart_page.dart';
 import 'package:taxnow_beta/pages/food/popular_food_detail.dart';
 import 'package:taxnow_beta/pages/home/main_food_page.dart';
@@ -9,12 +11,16 @@ import '../pages/home/home_page.dart';
 
 class RouteHelper {
   static const String splashPage = "/splash-page";
+  static const String signIn = "/sign-in";
+  static const String signUp = "/sign-up";
   static const String initial = "/";
   static const String popularFood = "/popular-food";
   static const String recommendedFood = "/recommended-food";
   static const String cartPage = "/cart-page";
 
   static String getSplashPage() => '$splashPage';
+  static String getSignIn() => '$signIn';
+  static String getSignUp() => '$signUp';
   static String getInitial() => '$initial';
   static String getPopularFood(int pageId, String page) =>
       '$popularFood?pageId=$pageId&page=$page';
@@ -23,6 +29,19 @@ class RouteHelper {
   static String getCartPage() => '$cartPage';
 
   static List<GetPage> routes = [
+    GetPage(
+      name: signIn,
+      page: () {
+        return SignInPage();
+      },
+    ),
+    GetPage(
+      name: signUp,
+      page: () {
+        return SignUpPage();
+      },
+      transition: Transition.fade,
+    ),
     GetPage(
       name: splashPage,
       page: () {
