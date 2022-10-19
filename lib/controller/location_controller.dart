@@ -20,4 +20,6 @@ class LocationController extends GetxController implements GetxService {
   late List<AddressModel> _allAddressList;
   List<String> _addressTypeList = ['home', 'office', 'others'];
   int _addressTypeIndex = 0;
+  late Map<String, dynamic> _getAddress;
+  Map get getAddress => _getAddress;
 }
