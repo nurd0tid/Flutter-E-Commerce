@@ -157,10 +157,11 @@ class _AddAddressPageState extends State<AddAddressPage> {
                                         : index == 1
                                             ? Icons.work
                                             : Icons.location_on,
-                                    color: locationController.addressTypeList ==
-                                            index
-                                        ? AppColors.mainColor
-                                        : Theme.of(context).disabledColor),
+                                    color:
+                                        locationController.addressTypeIndex ==
+                                                index
+                                            ? AppColors.mainColor
+                                            : Theme.of(context).disabledColor),
                               ),
                             );
                           },

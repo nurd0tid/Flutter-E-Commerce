@@ -27,6 +27,7 @@ class LocationController extends GetxController implements GetxService {
   final List<String> _addressTypeList = ['home', 'office', 'others'];
   List<String> get addressTypeList => _addressTypeList;
   int _addressTypeIndex = 0;
+  int get addressTypeIndex => _addressTypeIndex;
 
   late GoogleMapController _mapController;
   bool _updateAddressData = true;
