@@ -99,6 +99,7 @@ class LocationController extends GetxController implements GetxService {
     } else {
       print("Error getting the google api");
     }
+    update();
     return _address;
   }
 
@@ -161,5 +162,11 @@ class LocationController extends GetxController implements GetxService {
   Future<bool> saveUserAddress(AddressModel addressModel) async {
     String userAddress = jsonEncode(addressModel.toJson());
     return await locationRepo.saveUserAddress(userAddress);
+  }
+
+  void clearAddressList() {
+    _addressList = [];
+    _allAddressList = [];
+    update();
   }
 }

@@ -5,6 +5,7 @@ import 'package:taxnow_beta/controller/auth_controller.dart';
 import 'package:taxnow_beta/controller/location_controller.dart';
 import 'package:taxnow_beta/controller/user_controller.dart';
 import 'package:taxnow_beta/models/address_model.dart';
+import 'package:taxnow_beta/routes/routes_helper.dart';
 import 'package:taxnow_beta/utils/colors.dart';
 import 'package:taxnow_beta/widgets/app_text_field.dart';
 import 'package:taxnow_beta/widgets/big_text.dart';
@@ -263,7 +264,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                           .addAddress(_addressModel)
                           .then((response) {
                         if (response.isSuccess) {
-                          Get.back();
+                          Get.toNamed(RouteHelper.getInitial());
                           Get.snackbar("Address", "Added Successfully");
                         } else {
                           Get.snackbar("Address", "Could'nt save address");
