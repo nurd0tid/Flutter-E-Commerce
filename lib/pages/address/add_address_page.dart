@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taxnow_beta/controller/auth_controller.dart';
+import 'package:taxnow_beta/controller/location_controller.dart';
 import 'package:taxnow_beta/controller/user_controller.dart';
 
 class AddAddressPage extends StatefulWidget {
@@ -28,6 +29,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
     if (_isLogged && Get.find<UserController>().userModel == null) {
       Get.find<UserController>().getUserInfo();
     }
+    if (Get.find<LocationController>().addressList.isNotEmpty) {}
   }
 
   @override
