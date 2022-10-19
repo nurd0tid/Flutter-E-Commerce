@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:taxnow_beta/base/custom_loader.dart';
 import 'package:taxnow_beta/controller/auth_controller.dart';
 import 'package:taxnow_beta/controller/cart_controller.dart';
+import 'package:taxnow_beta/controller/location_controller.dart';
 import 'package:taxnow_beta/controller/user_controller.dart';
 import 'package:taxnow_beta/routes/routes_helper.dart';
 import 'package:taxnow_beta/utils/colors.dart';
@@ -102,16 +103,52 @@ class AccountPage extends StatelessWidget {
                                     height: Dimensions.height20,
                                   ),
                                   // address
-                                  AccountWidget(
-                                    appIcon: AppIcon(
-                                      icon: Icons.location_on,
-                                      backgroundColor: AppColors.yellowColor,
-                                      iconColor: Colors.white,
-                                      iconSize: Dimensions.height10 * 5 / 2,
-                                      size: Dimensions.height10 * 5,
-                                    ),
-                                    bigText: BigText(text: "Jalan Raya A6"),
-                                  ),
+                                  GetBuilder<LocationController>(
+                                      builder: (locationController) {
+                                    if (_userLoggedIn &&
+                                        locationController
+                                            .addressList.isEmpty) {
+                                      return GestureDetector(
+                                        onTap: () {
+                                          Get.offNamed(
+                                              RouteHelper.getAddress());
+                                        },
+                                        child: AccountWidget(
+                                          appIcon: AppIcon(
+                                            icon: Icons.location_on,
+                                            backgroundColor:
+                                                AppColors.yellowColor,
+                                            iconColor: Colors.white,
+                                            iconSize:
+                                                Dimensions.height10 * 5 / 2,
+                                            size: Dimensions.height10 * 5,
+                                          ),
+                                          bigText: BigText(
+                                              text: "Fill in your address"),
+                                        ),
+                                      );
+                                    } else {
+                                      return GestureDetector(
+                                        onTap: () {
+                                          Get.offNamed(
+                                              RouteHelper.getAddress());
+                                        },
+                                        child: AccountWidget(
+                                          appIcon: AppIcon(
+                                            icon: Icons.location_on,
+                                            backgroundColor:
+                                                AppColors.yellowColor,
+                                            iconColor: Colors.white,
+                                            iconSize:
+                                                Dimensions.height10 * 5 / 2,
+                                            size: Dimensions.height10 * 5,
+                                          ),
+                                          bigText:
+                                              BigText(text: "Your address"),
+                                        ),
+                                      );
+                                    }
+                                  }),
                                   SizedBox(
                                     height: Dimensions.height20,
                                   ),

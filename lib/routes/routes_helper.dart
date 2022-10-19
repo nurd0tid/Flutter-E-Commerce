@@ -52,11 +52,11 @@ class RouteHelper {
       },
     ),
     GetPage(
-      name: initial,
-      page: () {
-        return HomePage();
-      },
-    ),
+        name: initial,
+        page: () {
+          return HomePage();
+        },
+        transition: Transition.fade),
     GetPage(
       name: popularFood,
       page: () {
