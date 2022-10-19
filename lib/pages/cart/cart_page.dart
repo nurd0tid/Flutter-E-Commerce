@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:taxnow_beta/base/no_data_page.dart';
 import 'package:taxnow_beta/controller/auth_controller.dart';
 import 'package:taxnow_beta/controller/cart_controller.dart';
+import 'package:taxnow_beta/controller/location_controller.dart';
 import 'package:taxnow_beta/controller/popular_product_controller.dart';
 import 'package:taxnow_beta/pages/home/main_food_page.dart';
 import 'package:taxnow_beta/routes/routes_helper.dart';
@@ -295,7 +296,13 @@ class CartPage extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           if (Get.find<AuthController>().userLoggedIn()) {
-                            cartController.addToHistory();
+                            // cartController.addToHistory();
+                            print("logged in?");
+                            if (Get.find<LocationController>()
+                                .addressList
+                                .isEmpty) {
+                              Get.toNamed(RouteHelper.getAddress());
+                            }
                           } else {
                             Get.toNamed(RouteHelper.getSignIn());
                           }

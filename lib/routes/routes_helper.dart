@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:taxnow_beta/pages/address/add_address_page.dart';
 import 'package:taxnow_beta/pages/auth/sign_in_page.dart';
 import 'package:taxnow_beta/pages/auth/sign_up_page.dart';
 import 'package:taxnow_beta/pages/cart/cart_page.dart';
@@ -17,6 +18,7 @@ class RouteHelper {
   static const String popularFood = "/popular-food";
   static const String recommendedFood = "/recommended-food";
   static const String cartPage = "/cart-page";
+  static const String addAddress = "/add-address";
 
   static String getSplashPage() => '$splashPage';
   static String getSignIn() => '$signIn';
@@ -27,6 +29,7 @@ class RouteHelper {
   static String getRecommendedFood(int pageId, String page) =>
       '$recommendedFood?pageId=$pageId&page=$page';
   static String getCartPage() => '$cartPage';
+  static String getAddress() => '$addAddress';
 
   static List<GetPage> routes = [
     GetPage(
@@ -78,6 +81,12 @@ class RouteHelper {
         return CartPage();
       },
       transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: addAddress,
+      page: () {
+        return AddAddressPage();
+      },
     ),
   ];
 }
