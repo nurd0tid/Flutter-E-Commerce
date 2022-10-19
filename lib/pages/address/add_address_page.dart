@@ -4,6 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taxnow_beta/controller/auth_controller.dart';
 import 'package:taxnow_beta/controller/location_controller.dart';
 import 'package:taxnow_beta/controller/user_controller.dart';
+import 'package:taxnow_beta/models/address_model.dart';
 import 'package:taxnow_beta/utils/colors.dart';
 import 'package:taxnow_beta/widgets/app_text_field.dart';
 import 'package:taxnow_beta/widgets/big_text.dart';
@@ -105,6 +106,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                             compassEnabled: false,
                             indoorViewEnabled: true,
                             mapToolbarEnabled: false,
+                            myLocationEnabled: true,
                             onCameraIdle: () {
                               locationController.updatePosition(
                                   _cameraPosition, true);
@@ -245,7 +247,27 @@ class _AddAddressPageState extends State<AddAddressPage> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      // controller.addItem(product);
+                      AddressModel _addressModel = AddressModel(
+                        addressType: locationController.addressTypeList[
+                            locationController.addressTypeIndex],
+                        contactPersonName: _contactPersonName.text,
+                        contactPersonNumber: _contactPersonNumber.text,
+                        address: _addressController.text,
+                        latitude:
+                            locationController.position.latitude.toString(),
+                        longitude:
+                            locationController.position.longitude.toString(),
+                      );
+                      locationController
+                          .addAddress(_addressModel)
+                          .then((response) {
+                        if (response.isSuccess) {
+                          Get.back();
+                          Get.snackbar("Address", "Added Successfully");
+                        } else {
+                          Get.snackbar("Address", "Could'nt save address");
+                        }
+                      });
                     },
                     child: Container(
                       padding: EdgeInsets.only(
