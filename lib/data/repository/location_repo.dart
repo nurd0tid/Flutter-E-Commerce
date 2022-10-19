@@ -16,4 +16,8 @@ class LocationRepo {
     return await apiClient.getData('${AppConstants.GEOCODE_URI}'
         '?lat=${latlng.latitude}&lng=${latlng.longitude}');
   }
+
+  String getUserAddress() {
+    return sharedPreferences.getString(AppConstants.USER_ADDRESS) ?? "";
+  }
 }
