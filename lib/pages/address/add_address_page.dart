@@ -124,7 +124,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                     child: BigText(text: "Delivery Address"),
                   ),
                   SizedBox(
-                    height: Dimensions.height20,
+                    height: Dimensions.height10,
                   ),
                   AppTextField(
                     textController: _addressController,
@@ -134,6 +134,13 @@ class _AddAddressPageState extends State<AddAddressPage> {
                   SizedBox(
                     height: Dimensions.height20,
                   ),
+                  Padding(
+                    padding: EdgeInsets.only(left: Dimensions.width20),
+                    child: BigText(text: "Your Name"),
+                  ),
+                  SizedBox(
+                    height: Dimensions.height10,
+                  ),
                   AppTextField(
                     textController: _contactPersonName,
                     hintText: "Your name",
@@ -141,6 +148,13 @@ class _AddAddressPageState extends State<AddAddressPage> {
                   ),
                   SizedBox(
                     height: Dimensions.height20,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: Dimensions.width20),
+                    child: BigText(text: "Your Phone"),
+                  ),
+                  SizedBox(
+                    height: Dimensions.height10,
                   ),
                   AppTextField(
                     textController: _contactPersonNumber,
