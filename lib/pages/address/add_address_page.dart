@@ -89,7 +89,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                       borderRadius: BorderRadius.circular(5),
                       border: Border.all(
                         width: 2,
-                        color: Theme.of(context).primaryColor,
+                        color: AppColors.mainColor,
                       ),
                     ),
                     child: Stack(
