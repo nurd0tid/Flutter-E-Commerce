@@ -2,13 +2,16 @@
     package="com.example.taxnow_beta">
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
    <application
         android:label="taxnow_beta"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDjHSDTbzDMdMba04MgSMb5dfmwVsh2gII" />
+            android:value="AIzaSyBN8dKrPmFbrzHOHHXnG38ew4RKFnme-GA" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
