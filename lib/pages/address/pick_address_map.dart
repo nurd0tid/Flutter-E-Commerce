@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taxnow_beta/base/custom_button.dart';
 import 'package:taxnow_beta/controller/location_controller.dart';
+import 'package:taxnow_beta/routes/routes_helper.dart';
 import 'package:taxnow_beta/utils/colors.dart';
 import 'package:taxnow_beta/utils/dimension.dart';
 
@@ -112,7 +113,7 @@ class _PickAddressMapState extends State<PickAddressMap> {
                       ),
                     ),
                     Positioned(
-                      bottom: 200,
+                      bottom: 80,
                       left: Dimensions.width20,
                       right: Dimensions.width20,
                       child: CustomButton(
@@ -141,7 +142,7 @@ class _PickAddressMapState extends State<PickAddressMap> {
                                       );
                                       locationController.setAddAddressData();
                                     }
-                                    Get.back();
+                                    Get.toNamed(RouteHelper.getAddress());
                                   }
                                 }
                               },
