@@ -40,7 +40,7 @@ class CustomButton extends StatelessWidget {
     return Center(
       child: SizedBox(
         width: width ?? Dimensions.screenWidth,
-        height: 50,
+        height: height ?? 50,
         child: TextButton(
           onPressed: onPressed,
           style: _flatButton,

@@ -142,6 +142,7 @@ class _PickAddressMapState extends State<PickAddressMap> {
                                       );
                                       locationController.setAddAddressData();
                                     }
+                                    // Get.back();
                                     Get.toNamed(RouteHelper.getAddress());
                                   }
                                 }

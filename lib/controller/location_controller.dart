@@ -17,6 +17,7 @@ class LocationController extends GetxController implements GetxService {
   bool _loading = false;
   late Position _position;
   late Position _pickPosition;
+
   Placemark _placemark = Placemark();
   Placemark _pickPlacemark = Placemark();
   Placemark get placemark => _placemark;
@@ -39,6 +40,13 @@ class LocationController extends GetxController implements GetxService {
   bool get loading => _loading;
   Position get position => _position;
   Position get pickPosition => _pickPosition;
+
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+  bool _inZone = false;
+  bool get inZone => _inZone;
+  bool _buttonDisabled = false;
+  bool get buttonDisabled => _buttonDisabled;
 
   void setMapController(GoogleMapController mapController) {
     _mapController = mapController;
