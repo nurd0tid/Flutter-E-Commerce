@@ -5,6 +5,7 @@ import 'package:taxnow_beta/controller/auth_controller.dart';
 import 'package:taxnow_beta/controller/location_controller.dart';
 import 'package:taxnow_beta/controller/user_controller.dart';
 import 'package:taxnow_beta/models/address_model.dart';
+import 'package:taxnow_beta/pages/address/pick_address_map.dart';
 import 'package:taxnow_beta/routes/routes_helper.dart';
 import 'package:taxnow_beta/utils/colors.dart';
 import 'package:taxnow_beta/widgets/app_text_field.dart';
@@ -37,7 +38,13 @@ class _AddAddressPageState extends State<AddAddressPage> {
     if (_isLogged && Get.find<UserController>().userModel == null) {
       Get.find<UserController>().getUserInfo();
     }
+    // Bug Fix Local Storage
     if (Get.find<LocationController>().addressList.isNotEmpty) {
+      if (Get.find<LocationController>().getUserAddressFromLocalStorage() ==
+          "") {
+        Get.find<LocationController>()
+            .saveUserAddress(Get.find<LocationController>().addressList.last);
+      }
       Get.find<LocationController>().getUserAddress();
       _cameraPosition = CameraPosition(
           target: LatLng(
@@ -104,6 +111,17 @@ class _AddAddressPageState extends State<AddAddressPage> {
                               target: _initialPosition,
                               zoom: 17,
                             ),
+                            onTap: (latlng) {
+                              Get.toNamed(
+                                RouteHelper.getPickAddress(),
+                                arguments: PickAddressMap(
+                                  fromSignup: false,
+                                  fromAddress: true,
+                                  googleMapController:
+                                      locationController.mapController,
+                                ),
+                              );
+                            },
                             zoomControlsEnabled: false,
                             compassEnabled: false,
                             indoorViewEnabled: true,
