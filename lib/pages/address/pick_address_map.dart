@@ -86,7 +86,7 @@ class _PickAddressMapState extends State<PickAddressMap> {
                         ),
                         height: 50,
                         decoration: BoxDecoration(
-                          color: AppColors.mainColor,
+                          color: Colors.white,
                           borderRadius:
                               BorderRadius.circular(Dimensions.radius20 / 2),
                         ),
@@ -101,7 +101,7 @@ class _PickAddressMapState extends State<PickAddressMap> {
                               child: Text(
                                 '${locationController.pickPlacemark.name ?? ''}',
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black87,
                                   fontSize: Dimensions.font16,
                                 ),
                                 maxLines: 1,
