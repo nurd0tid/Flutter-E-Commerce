@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:taxnow_beta/base/custom_button.dart';
 import 'package:taxnow_beta/controller/location_controller.dart';
+import 'package:taxnow_beta/utils/colors.dart';
+import 'package:taxnow_beta/utils/dimension.dart';
 
 class PickAddressMap extends StatefulWidget {
   final bool fromSignup;
@@ -64,13 +67,86 @@ class _PickAddressMapState extends State<PickAddressMap> {
                       },
                     ),
                     Center(
-                        child: !locationController.loading
-                            ? Image.asset(
-                                "assets/image/pick_marker.png",
-                                height: 50,
-                                width: 50,
-                              )
-                            : CircularProgressIndicator()),
+                      child: !locationController.loading
+                          ? Image.asset(
+                              "assets/image/pick_marker.png",
+                              height: 50,
+                              width: 50,
+                            )
+                          : CircularProgressIndicator(),
+                    ),
+                    Positioned(
+                      top: Dimensions.height45,
+                      left: Dimensions.width20,
+                      right: Dimensions.width20,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: Dimensions.width10,
+                        ),
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: AppColors.mainColor,
+                          borderRadius:
+                              BorderRadius.circular(Dimensions.radius20 / 2),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.location_on,
+                              size: 25,
+                              color: AppColors.yellowColor,
+                            ),
+                            Expanded(
+                              child: Text(
+                                '${locationController.pickPlacemark.name ?? ''}',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: Dimensions.font16,
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 200,
+                      left: Dimensions.width20,
+                      right: Dimensions.width20,
+                      child: CustomButton(
+                        buttonText: 'Pick Address',
+                        onPressed: locationController.loading
+                            ? null
+                            : () {
+                                if (locationController.pickPosition.latitude !=
+                                        0 &&
+                                    locationController.pickPlacemark.name !=
+                                        null) {
+                                  if (widget.fromAddress) {
+                                    if (widget.googleMapController != null) {
+                                      print("Now you can click on this");
+                                      widget.googleMapController!.moveCamera(
+                                        CameraUpdate.newCameraPosition(
+                                          CameraPosition(
+                                            target: LatLng(
+                                              locationController
+                                                  .pickPosition.latitude,
+                                              locationController
+                                                  .pickPosition.longitude,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                      locationController.setAddAddressData();
+                                    }
+                                    Get.back();
+                                  }
+                                }
+                              },
+                      ),
+                    ),
                   ],
                 ),
               ),

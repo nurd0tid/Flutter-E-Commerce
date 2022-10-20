@@ -176,4 +176,11 @@ class LocationController extends GetxController implements GetxService {
   String getUserAddressFromLocalStorage() {
     return locationRepo.getUserAddress();
   }
+
+  void setAddAddressData() {
+    _position = _pickPosition;
+    _placemark = _pickPlacemark;
+    _updateAddressData = false;
+    update();
+  }
 }
