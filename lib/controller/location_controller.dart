@@ -90,6 +90,8 @@ class LocationController extends GetxController implements GetxService {
 
       _loading = false;
       update();
+    } else {
+      _updateAddressData = true;
     }
   }
 
