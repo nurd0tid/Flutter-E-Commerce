@@ -208,15 +208,38 @@ class LocationController extends GetxController implements GetxService {
     }
 
     update();
-    await Future.delayed(const Duration(seconds: 2), () {
-      _responseModel = ResponseModel(true, "success");
-      if (markerLoad) {
-        _loading = false;
+    // await Future.delayed(const Duration(seconds: 2), () {
+    //   _responseModel = ResponseModel(true, "success");
+    //   if (markerLoad) {
+    //     _loading = false;
+    //   } else {
+    //     _isLoading = false;
+    //   }
+    //   _inZone = false;
+    // });
+    Response response = await locationRepo.getZone(lat, lng);
+    if (response.statusCode == 200) {
+      // _inZone = true;
+      // _responseModel = ResponseModel(true, response.body["zone_id"].toString());
+      if (response.body["zone_id"] != 2) {
+        _responseModel =
+            ResponseModel(false, response.body["zone_id"].toString());
+        _inZone = false;
       } else {
-        _isLoading = false;
+        _responseModel =
+            ResponseModel(true, response.body["zone_id"].toString());
+        _inZone = true;
       }
+    } else {
       _inZone = false;
-    });
+      _responseModel = ResponseModel(true, response.statusText!);
+    }
+    if (markerLoad) {
+      _loading = false;
+    } else {
+      _isLoading = false;
+    }
+    print("zone response code is " + response.statusCode.toString());
     update();
     return _responseModel;
   }

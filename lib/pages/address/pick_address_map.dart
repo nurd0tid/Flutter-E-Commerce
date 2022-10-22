@@ -31,7 +31,7 @@ class _PickAddressMapState extends State<PickAddressMap> {
   void initState() {
     super.initState();
     if (Get.find<LocationController>().addressList.isEmpty) {
-      _initialPosition = LatLng(-6.200000, 106.816666);
+      _initialPosition = LatLng(45.521563, -122.677433);
       _cameraPosition = CameraPosition(target: _initialPosition, zoom: 17);
     } else {
       if (Get.find<LocationController>().addressList.isNotEmpty) {
