@@ -116,38 +116,53 @@ class _PickAddressMapState extends State<PickAddressMap> {
                       bottom: 80,
                       left: Dimensions.width20,
                       right: Dimensions.width20,
-                      child: CustomButton(
-                        buttonText: 'Pick Address',
-                        onPressed: locationController.loading
-                            ? null
-                            : () {
-                                if (locationController.pickPosition.latitude !=
-                                        0 &&
-                                    locationController.pickPlacemark.name !=
-                                        null) {
-                                  if (widget.fromAddress) {
-                                    if (widget.googleMapController != null) {
-                                      print("Now you can click on this");
-                                      widget.googleMapController!.moveCamera(
-                                        CameraUpdate.newCameraPosition(
-                                          CameraPosition(
-                                            target: LatLng(
-                                              locationController
-                                                  .pickPosition.latitude,
-                                              locationController
-                                                  .pickPosition.longitude,
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                      locationController.setAddAddressData();
-                                    }
-                                    // Get.back();
-                                    Get.toNamed(RouteHelper.getAddress());
-                                  }
-                                }
-                              },
-                      ),
+                      child: !locationController.isLoading
+                          ? Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : CustomButton(
+                              buttonText: locationController.inZone
+                                  ? widget.fromAddress
+                                      ? 'Pick Address'
+                                      : 'Pick Location'
+                                  : 'Service not available in your area',
+                              onPressed: (locationController.buttonDisabled ||
+                                      locationController.loading)
+                                  ? null
+                                  : () {
+                                      if (locationController
+                                                  .pickPosition.latitude !=
+                                              0 &&
+                                          locationController
+                                                  .pickPlacemark.name !=
+                                              null) {
+                                        if (widget.fromAddress) {
+                                          if (widget.googleMapController !=
+                                              null) {
+                                            print("Now you can click on this");
+                                            widget.googleMapController!
+                                                .moveCamera(
+                                              CameraUpdate.newCameraPosition(
+                                                CameraPosition(
+                                                  target: LatLng(
+                                                    locationController
+                                                        .pickPosition.latitude,
+                                                    locationController
+                                                        .pickPosition.longitude,
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                            locationController
+                                                .setAddAddressData();
+                                          }
+                                          Get.back();
+                                          // Bug Refresh Map Always Same
+                                          // Get.toNamed(RouteHelper.getAddress());
+                                        }
+                                      }
+                                    },
+                            ),
                     ),
                   ],
                 ),
