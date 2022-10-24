@@ -19,7 +19,7 @@ class SearchLocationPage extends StatelessWidget {
     final TextEditingController _controller = TextEditingController();
     return Container(
       padding: EdgeInsets.all(Dimensions.width10),
-      // alignment: Alignment.topCenter,
+      alignment: Alignment.topCenter,
       child: Material(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(Dimensions.radius20 / 3),
@@ -54,7 +54,9 @@ class SearchLocationPage extends StatelessWidget {
                   children: [
                     Icon(Icons.location_on),
                     Expanded(
-                      child: Text("new Location"),
+                      child: Text(
+                        suggestion.description!,
+                      ),
                     ),
                   ],
                 );
