@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taxnow_beta/base/custom_button.dart';
 import 'package:taxnow_beta/controller/location_controller.dart';
+import 'package:taxnow_beta/pages/address/widgets/search_location_page.dart';
 import 'package:taxnow_beta/routes/routes_helper.dart';
 import 'package:taxnow_beta/utils/colors.dart';
 import 'package:taxnow_beta/utils/dimension.dart';
@@ -56,17 +57,20 @@ class _PickAddressMapState extends State<PickAddressMap> {
                 child: Stack(
                   children: [
                     GoogleMap(
-                      initialCameraPosition:
-                          CameraPosition(target: _initialPosition, zoom: 17),
-                      zoomControlsEnabled: false,
-                      onCameraMove: (CameraPosition cameraPosition) {
-                        _cameraPosition = cameraPosition;
-                      },
-                      onCameraIdle: () {
-                        Get.find<LocationController>()
-                            .updatePosition(_cameraPosition, false);
-                      },
-                    ),
+                        initialCameraPosition:
+                            CameraPosition(target: _initialPosition, zoom: 17),
+                        zoomControlsEnabled: false,
+                        onCameraMove: (CameraPosition cameraPosition) {
+                          _cameraPosition = cameraPosition;
+                        },
+                        onCameraIdle: () {
+                          Get.find<LocationController>()
+                              .updatePosition(_cameraPosition, false);
+                        },
+                        onMapCreated: (GoogleMapController mapController) {
+                          _mapController = mapController;
+                          if (!widget.fromAddress) {}
+                        }),
                     Center(
                       child: !locationController.loading
                           ? Image.asset(
@@ -80,35 +84,42 @@ class _PickAddressMapState extends State<PickAddressMap> {
                       top: Dimensions.height45,
                       left: Dimensions.width20,
                       right: Dimensions.width20,
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: Dimensions.width10,
-                        ),
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius:
-                              BorderRadius.circular(Dimensions.radius20 / 2),
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.location_on,
-                              size: 25,
-                              color: AppColors.yellowColor,
-                            ),
-                            Expanded(
-                              child: Text(
-                                '${locationController.pickPlacemark.name ?? ''}',
-                                style: TextStyle(
-                                  color: Colors.black87,
-                                  fontSize: Dimensions.font16,
-                                ),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
+                      child: InkWell(
+                        onTap: () => Get.dialog(
+                            SearchLocationPage(mapController: _mapController)),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: Dimensions.width10,
+                          ),
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius:
+                                BorderRadius.circular(Dimensions.radius20 / 2),
+                          ),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.location_on,
+                                size: 25,
+                                color: AppColors.yellowColor,
                               ),
-                            ),
-                          ],
+                              Expanded(
+                                child: Text(
+                                  '${locationController.pickPlacemark.name ?? ''}',
+                                  style: TextStyle(
+                                    color: Colors.black87,
+                                    fontSize: Dimensions.font16,
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              SizedBox(width: Dimensions.width10),
+                              Icon(Icons.search,
+                                  size: 25, color: AppColors.yellowColor)
+                            ],
+                          ),
                         ),
                       ),
                     ),

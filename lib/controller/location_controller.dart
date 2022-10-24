@@ -1,11 +1,14 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:taxnow_beta/data/api/api_checker.dart';
 import 'package:taxnow_beta/data/repository/location_repo.dart';
 import 'package:taxnow_beta/models/response_model.dart';
+import 'package:google_maps_webservice/places.dart';
 
 import '../models/address_model.dart';
 
@@ -47,6 +50,7 @@ class LocationController extends GetxController implements GetxService {
   bool get inZone => _inZone;
   bool _buttonDisabled = true;
   bool get buttonDisabled => _buttonDisabled;
+  List<Prediction> _predictionList = [];
 
   void setMapController(GoogleMapController mapController) {
     _mapController = mapController;
@@ -233,5 +237,20 @@ class LocationController extends GetxController implements GetxService {
     print("zone response code is " + response.statusCode.toString());
     update();
     return _responseModel;
+  }
+
+  Future<List<Prediction>> searchLocation(
+      BuildContext context, String text) async {
+    if (text.isNotEmpty) {
+      Response response = await locationRepo.searchLocation(text);
+      if (response.statusCode == 200 && response.body['status'] == 'OK') {
+        _predictionList = [];
+        response.body['predictions'].forEach((prediction) =>
+            _predictionList.add(Prediction.fromJson(prediction)));
+      } else {
+        ApiChecker.checkApi(response);
+      }
+    }
+    return _predictionList;
   }
 }
