@@ -45,20 +45,33 @@ class SearchLocationPage extends StatelessWidget {
                 ),
               ),
               onSuggestionSelected: (suggestion) {},
-              suggestionsCallback: (String pattern) async {
+              suggestionsCallback: (pattern) async {
                 return await Get.find<LocationController>()
                     .searchLocation(context, pattern);
               },
               itemBuilder: (context, Prediction suggestion) {
-                return Row(
-                  children: [
-                    Icon(Icons.location_on),
-                    Expanded(
-                      child: Text(
-                        suggestion.description!,
+                return Padding(
+                  padding: EdgeInsets.all(Dimensions.width10),
+                  child: Row(
+                    children: [
+                      Icon(Icons.location_on),
+                      Expanded(
+                        child: Text(
+                          suggestion.description!,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style:
+                              Theme.of(context).textTheme.headline2?.copyWith(
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .bodyText1
+                                        ?.color,
+                                    fontSize: Dimensions.font16,
+                                  ),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 );
               },
             )),
