@@ -219,17 +219,8 @@ class LocationController extends GetxController implements GetxService {
     // });
     Response response = await locationRepo.getZone(lat, lng);
     if (response.statusCode == 200) {
-      // _inZone = true;
-      // _responseModel = ResponseModel(true, response.body["zone_id"].toString());
-      if (response.body["zone_id"] != 2) {
-        _responseModel =
-            ResponseModel(false, response.body["zone_id"].toString());
-        _inZone = false;
-      } else {
-        _responseModel =
-            ResponseModel(true, response.body["zone_id"].toString());
-        _inZone = true;
-      }
+      _inZone = true;
+      _responseModel = ResponseModel(true, response.body["zone_id"].toString());
     } else {
       _inZone = false;
       _responseModel = ResponseModel(true, response.statusText!);

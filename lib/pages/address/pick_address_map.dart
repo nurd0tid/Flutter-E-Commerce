@@ -116,7 +116,7 @@ class _PickAddressMapState extends State<PickAddressMap> {
                       bottom: 80,
                       left: Dimensions.width20,
                       right: Dimensions.width20,
-                      child: !locationController.isLoading
+                      child: locationController.isLoading
                           ? Center(
                               child: CircularProgressIndicator(),
                             )
