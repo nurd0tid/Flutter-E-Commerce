@@ -48,7 +48,11 @@ class SearchLocationPage extends StatelessWidget {
                       ),
                 ),
               ),
-              onSuggestionSelected: (suggestion) {},
+              onSuggestionSelected: (Prediction suggestion) {
+                Get.find<LocationController>().setLocation(suggestion.placeId!,
+                    suggestion.description!, mapController);
+                Get.back();
+              },
               suggestionsCallback: (pattern) async {
                 return await Get.find<LocationController>()
                     .searchLocation(context, pattern);
