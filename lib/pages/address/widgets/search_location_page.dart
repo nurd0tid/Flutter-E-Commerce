@@ -42,6 +42,10 @@ class SearchLocationPage extends StatelessWidget {
                       width: 0,
                     ),
                   ),
+                  hintStyle: Theme.of(context).textTheme.headline2?.copyWith(
+                        color: Theme.of(context).disabledColor,
+                        fontSize: Dimensions.font16,
+                      ),
                 ),
               ),
               onSuggestionSelected: (suggestion) {},
