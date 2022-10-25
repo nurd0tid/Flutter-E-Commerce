@@ -282,6 +282,7 @@ class LocationController extends GetxController implements GetxService {
             detail.result.geometry!.location.lat,
             detail.result.geometry!.location.lng,
           ),
+          zoom: 17,
         ),
       ));
     }
