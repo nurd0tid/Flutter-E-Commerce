@@ -253,4 +253,13 @@ class LocationController extends GetxController implements GetxService {
     }
     return _predictionList;
   }
+
+  setLocation(
+      String placeID, String address, GoogleMapController mapController) async {
+    _loading = true;
+    update();
+    PlacesDetailsResponse detail;
+    Response response = await locationRepo.setLocation(placeID);
+    detail = PlacesDetailsResponse.fromJson(response.body);
+  }
 }
