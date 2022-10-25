@@ -275,6 +275,16 @@ class LocationController extends GetxController implements GetxService {
       name: address,
     );
     _changeAddress = false;
+    if (!mapController.isNull) {
+      mapController.animateCamera(CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: LatLng(
+            detail.result.geometry!.location.lat,
+            detail.result.geometry!.location.lng,
+          ),
+        ),
+      ));
+    }
     _loading = false;
     update();
   }
