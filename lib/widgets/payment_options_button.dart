@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:taxnow_beta/controller/order_controller.dart';
+import 'package:taxnow_beta/utils/colors.dart';
 import 'package:taxnow_beta/utils/dimension.dart';
 import 'package:taxnow_beta/utils/styles.dart';
 
@@ -22,6 +23,7 @@ class PaymentOptionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<OrderController>(builder: (orderController) {
+      bool _selected = orderController.paymentIndex == index;
       return InkWell(
         onTap: () => orderController.setPaymentIndex(index),
         child: Container(
@@ -42,7 +44,9 @@ class PaymentOptionButton extends StatelessWidget {
             leading: Icon(
               icon,
               size: 40,
-              color: Theme.of(context).disabledColor,
+              color: _selected
+                  ? AppColors.mainColor
+                  : Theme.of(context).disabledColor,
             ),
             title: Text(
               title,
@@ -59,10 +63,12 @@ class PaymentOptionButton extends StatelessWidget {
                 fontSize: Dimensions.font16,
               ),
             ),
-            trailing: Icon(
-              Icons.check_circle,
-              color: Theme.of(context).primaryColor,
-            ),
+            trailing: _selected
+                ? Icon(
+                    Icons.check_circle,
+                    color: Theme.of(context).primaryColor,
+                  )
+                : null,
           ),
         ),
       );
