@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:taxnow_beta/base/custom_app_bar.dart';
 import 'package:taxnow_beta/controller/auth_controller.dart';
 import 'package:taxnow_beta/controller/location_controller.dart';
 import 'package:taxnow_beta/controller/user_controller.dart';
@@ -62,10 +63,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Address"),
-        backgroundColor: AppColors.mainColor,
-      ),
+      appBar: CustomAppBar(title: "My Address"),
       body: GetBuilder<UserController>(
         builder: (userController) {
           if (userController.userModel != null &&

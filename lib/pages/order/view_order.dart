@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:taxnow_beta/base/custom_loader.dart';
 import 'package:taxnow_beta/controller/order_controller.dart';
 import 'package:taxnow_beta/utils/colors.dart';
 import 'package:taxnow_beta/utils/dimension.dart';
@@ -136,7 +137,7 @@ class ViewOrder extends StatelessWidget {
               ),
             );
           } else {
-            return Text("loading");
+            return CustomLoader();
           }
         },
       ),
