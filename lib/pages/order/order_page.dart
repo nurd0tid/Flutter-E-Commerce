@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:taxnow_beta/controller/auth_controller.dart';
+import 'package:taxnow_beta/pages/order/view_order.dart';
 import 'package:taxnow_beta/utils/colors.dart';
 import 'package:taxnow_beta/utils/dimension.dart';
 
@@ -25,7 +26,7 @@ class _OrderPageState extends State<OrderPage> with TickerProviderStateMixin {
     _isLoggedIn = Get.find<AuthController>().userLoggedIn();
     if (_isLoggedIn) {
       _tabController = TabController(length: 2, vsync: this);
-      // Get.find<OrderController>().getOrderList();
+      Get.find<OrderController>().getOrderList();
     }
   }
 
@@ -60,8 +61,8 @@ class _OrderPageState extends State<OrderPage> with TickerProviderStateMixin {
             child: TabBarView(
               controller: _tabController,
               children: [
-                Text("order1"),
-                Text("order2"),
+                ViewOrder(isCurrent: true),
+                ViewOrder(isCurrent: false),
               ],
             ),
           ),
