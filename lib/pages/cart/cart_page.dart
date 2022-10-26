@@ -16,7 +16,7 @@ import 'package:taxnow_beta/utils/colors.dart';
 import 'package:taxnow_beta/utils/dimension.dart';
 import 'package:taxnow_beta/widgets/app_icon.dart';
 import 'package:taxnow_beta/widgets/big_text.dart';
-import 'package:taxnow_beta/widgets/payment_options_button.dart';
+import 'package:taxnow_beta/pages/payment/payment_options_button.dart';
 import 'package:taxnow_beta/widgets/small_text.dart';
 
 import '../../controller/recommended_product_controller.dart';
