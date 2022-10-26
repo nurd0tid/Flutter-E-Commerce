@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:taxnow_beta/base/custom_app_bar.dart';
 import 'package:taxnow_beta/base/custom_loader.dart';
 import 'package:taxnow_beta/controller/auth_controller.dart';
 import 'package:taxnow_beta/controller/cart_controller.dart';
@@ -24,14 +25,7 @@ class AccountPage extends StatelessWidget {
       Get.find<LocationController>().getAddressList();
     }
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.mainColor,
-        title: BigText(
-          text: "Profile",
-          size: 24,
-          color: Colors.white,
-        ),
-      ),
+      appBar: CustomAppBar(title: "My Account"),
       body: GetBuilder<UserController>(
         builder: (userController) {
           return _userLoggedIn

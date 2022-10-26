@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:taxnow_beta/utils/colors.dart';
 import 'package:taxnow_beta/widgets/big_text.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -20,6 +21,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       title: BigText(text: title, color: Colors.white),
       centerTitle: true,
+      backgroundColor: AppColors.mainColor,
+      elevation: 0,
       leading: backButtonExist
           ? IconButton(
               onPressed: () => onBackPressed != null
