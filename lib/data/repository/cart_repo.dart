@@ -30,7 +30,6 @@ class CartRepo {
     List<String> carts = [];
     if (sharedPreferences.containsKey(AppConstants.CART_LIST)) {
       carts = sharedPreferences.getStringList(AppConstants.CART_LIST)!;
-      print("inside getCartList " + carts.toString());
     }
     List<CartModel> cartList = [];
 
@@ -60,13 +59,11 @@ class CartRepo {
           sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
     }
     for (var i = 0; i < cart.length; i++) {
-      // print("history list " + cart[i]);
       cartHistory.add(cart[i]);
     }
-    removeCart();
+    cart = [];
     sharedPreferences.setStringList(
         AppConstants.CART_HISTORY_LIST, cartHistory);
-    print("the length" + getCartHistoryList().length.toString());
   }
 
   void removeCart() {
@@ -77,6 +74,11 @@ class CartRepo {
   void clearCartHistory() {
     removeCart();
     cartHistory = [];
+    sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
+  }
+
+  void removeCartSharedPreference() {
+    sharedPreferences.remove(AppConstants.CART_LIST);
     sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
   }
 }

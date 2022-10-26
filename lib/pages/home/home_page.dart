@@ -5,6 +5,7 @@ import 'package:taxnow_beta/pages/account/account_page.dart';
 import 'package:taxnow_beta/pages/auth/sign_up_page.dart';
 import 'package:taxnow_beta/pages/cart/cart_history.dart';
 import 'package:taxnow_beta/pages/home/main_food_page.dart';
+import 'package:taxnow_beta/pages/order/order_page.dart';
 
 import '../../utils/colors.dart';
 
@@ -21,7 +22,7 @@ class _HomePageState extends State<HomePage> {
 
   List pages = [
     MainFoodPage(),
-    Container(child: Text("History Page")),
+    OrderPage(),
     CartHistory(),
     AccountPage(),
   ];

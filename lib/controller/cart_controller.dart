@@ -116,7 +116,6 @@ class CartController extends GetxController {
 
   set setCart(List<CartModel> items) {
     storageItems = items;
-    // print("length " + storageItems.length.toString());
     for (var i = 0; i < storageItems.length; i++) {
       _items.putIfAbsent(storageItems[i].product!.id!, () => storageItems[i]);
     }
@@ -149,5 +148,9 @@ class CartController extends GetxController {
   void clearCartHistory() {
     cartRepo.clearCartHistory();
     update();
+  }
+
+  void removeCartSharedPreference() {
+    cartRepo.removeCartSharedPreference();
   }
 }
