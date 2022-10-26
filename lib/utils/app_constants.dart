@@ -23,6 +23,9 @@ class AppConstants {
       "/api/v1/config/place-api-autocomplete";
   static const String PLACE_DETAILS_URI = "/api/v1/config/place-api-details";
 
+  // Order
+  static const String PLACE_ORDER_URI = "/api/v1/customer/order/place";
+
   static const String UPLOAD_URL = "/uploads/";
   static const String PHONE = "";
   static const String PASSWORD = "";
